@@ -3,7 +3,18 @@ import Column from '../Column/Column.component';
 import '../Style/Board.layout.css';
 const initialState = {
 	tasks: {
-		Morning: [ { title: 'morning task' }, { title: 'another morning tasks' } ],
+		Morning: [
+			{ title: 'morning task' },
+			{
+				title:
+					'another morning tasks. another morning tasks another morning tasks. another morning tasks another morning tasks'
+			},
+			{ title: 'another morning tasks' },
+			{ title: 'another morning tasks' },
+			{ title: 'another morning tasks' },
+			{ title: 'another morning tasks' },
+			{ title: 'another morning tasks' }
+		],
 		Evening: [ { title: 'Evening task' }, { title: 'another Evening tasks' } ]
 	}
 };

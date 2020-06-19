@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-import './App.css';
+// import './Reset.css';
 
 import Board from './components/Board/Board.component';
-import Input from './components/Input/Input.component';
+import MutableInput from './components/MutableInput/MutableInput.component';
 
 function App() {
 	const [ form1, form1Set ] = useState('Starting Words');
@@ -13,12 +13,11 @@ function App() {
 	const [ form5, form5Set ] = useState('Starting Words');
 	return (
 		<div className="App">
-			{/* <Board /> */}
-			<Input value={form1} valueSet={form1Set} />
-			<Input value={form2} valueSet={form2Set} />
-			<Input value={form3} valueSet={form3Set} />
-			<Input value={form4} valueSet={form4Set} />
-			<Input value={form5} valueSet={form5Set} />
+			<Board />
+			<div id="test-box">
+				<MutableInput value={form1} valueSet={form1Set} />
+				<MutableInput value={form2} valueSet={form2Set} />
+			</div>
 		</div>
 	);
 }

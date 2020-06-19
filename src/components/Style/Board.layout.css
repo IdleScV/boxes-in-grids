@@ -5,12 +5,21 @@
 
 #column {
 	border: solid 2px red;
+	border-radius: 5px;
 	margin: 5px;
 	padding: 10px;
 	width: 250px;
+	height: 100%;
 }
 
-#task {
-	border: solid 2px red;
-	height: 30px;
+#column #title {
+	/* border: solid 2px red; */
+	position: relative;
+}
+
+#column #title #menu {
+	position: absolute;
+	top: 5px;
+	right: 0px;
+	border: solid 2px blue;
 }

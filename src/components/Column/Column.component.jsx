@@ -1,33 +1,22 @@
 import React, { useState, useEffect } from 'react';
-
+import MutableInput from '../MutableInput/MutableInput.component';
 import Task from '../Task/Task.component';
 
 function Column({ name, data, tasksSet }) {
-	const [ titleChange, titleChangeSet ] = useState(false);
-	const [ currentFocus, currentFocusSet ] = useState(undefined);
-
-	const handleTitleClick = (targetValue) => {
-		currentFocusSet(targetValue);
-
-		titleChangeSet(true);
-	};
-
-	const handleTitleChange = (e) => {
-		currentFocusSet(e.target.value);
-	};
-
-	const handleKeyDown = (e) => {
-		console.log(e);
-	};
+	const [ title, titleSet ] = useState(null);
+	useEffect(
+		() => {
+			titleSet(name);
+		},
+		[ name ]
+	);
 
 	return (
 		<div id="column">
-			{titleChange ? (
-				<input type="text" value={currentFocus} onChange={handleTitleChange} onKeyDown={handleKeyDown} />
-			) : (
-				<h2 onClick={() => handleTitleClick(name)}>{name}</h2>
-			)}
-
+			<div id="title">
+				<MutableInput value={title} valueSet={titleSet} placeHolder="Enter list title..." />
+				<div id="menu">...</div>
+			</div>
 			{data.map((taskData, i) => <Task data={taskData} key={i} />)}
 		</div>
 	);
