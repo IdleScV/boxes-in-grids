@@ -1,0 +1,16 @@
+#board {
+	display: flex;
+	border: solid 2px red;
+}
+
+#column {
+	border: solid 2px red;
+	margin: 5px;
+	padding: 10px;
+	width: 250px;
+}
+
+#task {
+	border: solid 2px red;
+	height: 30px;
+}
