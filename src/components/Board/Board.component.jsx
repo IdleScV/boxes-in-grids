@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Column from '../Column/Column.component';
-import '../Style/Board.layout.css';
+import '../Style/Board.layout.scss';
 const initialState = {
 	tasks: {
 		Morning: [

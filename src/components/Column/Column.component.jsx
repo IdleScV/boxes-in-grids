@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MutableInput from '../MutableInput/MutableInput.component';
 import Task from '../Task/Task.component';
-
+import AddTask from '../AddTask/AddTask.component';
 function Column({ name, data, tasksSet }) {
 	const [ title, titleSet ] = useState(null);
 	useEffect(
@@ -17,7 +17,8 @@ function Column({ name, data, tasksSet }) {
 				<MutableInput value={title} valueSet={titleSet} placeHolder="Enter list title..." />
 				<div id="menu">...</div>
 			</div>
-			{data.map((taskData, i) => <Task data={taskData} key={i} />)}
+			<div id="taskbar">{data.map((taskData, i) => <Task data={taskData} key={i} />)}</div>
+			<AddTask />
 		</div>
 	);
 }
