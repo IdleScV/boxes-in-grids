@@ -3,22 +3,21 @@
 	font-size: 24px;
 	font-family: Arial, Helvetica, sans-serif;
 	color: rgb(55, 70, 101);
-	// padding-left: 5px;
 	width: 83%;
-	height: 100%;
+
 	clear: both;
+	min-height: 30px;
+	max-height: 400px;
+	overflow-y: auto;
 }
 
 #mi-textarea {
 	@include shared;
-	margin: -2px -2px 5px 0px;
-	padding-left: 4px;
-	border: 2px solid rgb(41, 79, 247);
+	margin: -1px 0px 6px 0px;
+	padding-left: 5px;
+	border: 1x solid rgb(41, 79, 247);
 	border-radius: 4px;
 	resize: none;
-	overflow: hidden;
-	min-height: 30px;
-	max-height: 500px;
 }
 
 #mi-div {

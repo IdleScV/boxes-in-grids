@@ -3,32 +3,33 @@ import OutsideClickHandler from 'react-outside-click-handler';
 
 import './MutableInput.style.scss';
 
-function MutableInput({ value, valueSet, placeHolder, size }) {
+function MutableInput({ value, valueSet, placeHolder }) {
 	const currentField = useRef(null);
 	const [ edit, editSet ] = useState(false);
-
-	function auto_grow(e) {
-		e.target.style.height = e.target.scrollHeight + 'px';
-	}
 
 	//* Initiates textarea onClick, selects all text & creates sets height
 	useEffect(
 		() => {
 			if (edit) {
 				currentField.current.select();
+
 				currentField.current.style.height = currentField.current.scrollHeight + 'px';
 			}
 		},
 		[ edit ]
 	);
 
-	//* Enter key & outsideclick handler
+	//* Enter key & outsideclick handler | size changer
 	const handleKeyPress = (e) => {
 		if (e.key === 'Enter' || e === 'outside') {
 			if (value === '') {
 				valueSet(placeHolder);
 			}
 			editSet(false);
+		}
+		if (e.target) {
+			console.log(e.target.scrollHeight);
+			e.target.style.height = e.target.scrollHeight + 'px';
 		}
 	};
 
@@ -43,7 +44,6 @@ function MutableInput({ value, valueSet, placeHolder, size }) {
 				{edit ? (
 					<textarea
 						id="mi-textarea"
-						onInput={auto_grow}
 						type="text"
 						value={value}
 						onChange={handleInputChange}
@@ -52,11 +52,7 @@ function MutableInput({ value, valueSet, placeHolder, size }) {
 						rows="1"
 					/>
 				) : (
-					<div
-						// style={style.div}
-						onClick={() => editSet(true)}
-						id="mi-div"
-					>
+					<div onClick={() => editSet(true)} id="mi-div">
 						{value}
 					</div>
 				)}
