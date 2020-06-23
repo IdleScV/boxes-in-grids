@@ -1,5 +1,4 @@
 @mixin shared {
-	padding: 0px;
 	font-size: 24px;
 	font-family: Arial, Helvetica, sans-serif;
 	color: rgb(55, 70, 101);
@@ -13,17 +12,18 @@
 
 #mi-textarea {
 	@include shared;
-	margin: -1px 0px 6px 0px;
-	padding-left: 5px;
-	border: 1x solid rgb(41, 79, 247);
+	margin: -2px 2px 5px 0px;
+	padding-left: 4px;
+	border: 2px solid rgb(41, 79, 247);
 	border-radius: 4px;
 	resize: none;
+	// height: 10px;
 }
 
 #mi-div {
 	@include shared;
 	padding-left: 6px;
-	padding-bottom: 10px;
-	margin-bottom: 0px;
+	padding-bottom: 0px;
+	margin-bottom: 7px;
 	overflow-wrap: break-word;
 }

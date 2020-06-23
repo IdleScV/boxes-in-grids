@@ -3,7 +3,7 @@ import OutsideClickHandler from 'react-outside-click-handler';
 
 import './MutableInput.style.scss';
 
-function MutableInput({ value, valueSet, placeHolder }) {
+function MutableInput({ value, valueSet, placeHolder, changeTitleName, index }) {
 	const currentField = useRef(null);
 	const [ edit, editSet ] = useState(false);
 
@@ -13,8 +13,13 @@ function MutableInput({ value, valueSet, placeHolder }) {
 			if (edit) {
 				currentField.current.select();
 
-				currentField.current.style.height = currentField.current.scrollHeight + 'px';
+				currentField.current.style.height =
+					currentField.current.scrollHeight === 45
+						? currentField.current.scrollHeight - 15 + 'px'
+						: currentField.current.scrollHeight + 'px';
 			}
+
+			changeTitleName(index, value);
 		},
 		[ edit ]
 	);

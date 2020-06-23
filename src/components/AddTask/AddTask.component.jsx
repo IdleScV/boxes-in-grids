@@ -1,20 +1,46 @@
 import React, { useState, useRef, useEffect } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import './AddTask.style.scss';
-function AddTask() {
+function AddTask({ addNewTask, index }) {
 	const [ edit, editSet ] = useState(false);
-	const [ text, textSet ] = useState('');
+	const [ text, textSet ] = useState(undefined);
 	const inputField = useRef(null);
 
+	const handleChange = (e) => {
+		textSet(e.target.value);
+	};
+
 	const handleKeyPress = (e) => {
-		if (e.key === 'Enter' || e === 'outside') {
+		if (e.key === 'Enter' || e === 'outside' || e === 'submit') {
 			editSet(false);
+
+			if (text) {
+				addNewTask(index, text);
+			}
+		}
+		if (e === 'cancel') {
+			editSet(false);
+			textSet(undefined);
 		}
 	};
-	function auto_grow(e) {
-		e.target.style.height = e.target.scrollHeight + 'px';
-	}
 
+	const openTextArea = () => {
+		editSet(true);
+	};
+
+	const openTemplate = () => {
+		console.log('opening template menu');
+	};
+
+	//* Resets field with new text se~t
+	useEffect(
+		() => {
+			textSet(undefined);
+		},
+		[ addNewTask ]
+	);
+
+	// focuses on input field
 	useEffect(
 		() => {
 			if (edit) {
@@ -29,26 +55,37 @@ function AddTask() {
 			{edit ? (
 				<div id="add-card-menu">
 					<div>
-						<input
-							onInput={auto_grow}
-							className="text-area"
+						<textarea
+							id="text-area"
 							type="textarea"
+							value={text}
+							onChange={handleChange}
+							onKeyDown={handleKeyPress}
 							placeholder="Enter a title for this card..."
 							ref={inputField}
+							rows="5"
 						/>
 					</div>
 					<div className="options">
-						<div id="add">Add Card</div>
-						<div id="close">X</div>
-						<div id="menu">...</div>
+						<button id="add" onClick={() => handleKeyPress('submit')}>
+							Add Card
+						</button>
+						<button id="close" onClick={() => handleKeyPress('cancel')}>
+							X
+						</button>
+						<button id="menu" onClick={openTemplate}>
+							...
+						</button>
 					</div>
 				</div>
 			) : (
 				<div id="last-column-item">
-					<div id="add-task" onClick={() => editSet(true)}>
+					<div id="add-task" onClick={openTextArea}>
 						+ Add a task
 					</div>
-					<div id="create-from-template">:::</div>
+					<div id="create-from-template" onClick={openTemplate}>
+						:::
+					</div>
 				</div>
 			)}
 		</OutsideClickHandler>
